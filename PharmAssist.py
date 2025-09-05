@@ -3,7 +3,7 @@ import streamlit as st
 st.title("PharmAssist")
 st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always consult a " \
-"healthcare provider when experiencing serious symptoms, if you are pregnant, or taking other medications.")
+"healthcare provider when experiencing serious symptoms, in pregnancy, or taking other medications.")
 
 symptom = st.text_area("Describe your symptoms:")
 
@@ -11,26 +11,25 @@ msg = "Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for accurate advice."
 
 medDict = {
-    "headache": ["Tylenol", "Ibuprofen (Advil)"],
-    "cough": ["Dextromethorphan (Robitussin)", "Honey-based syrups"],
-    "allergy": ["Loratadine (Claritin)", "Cetirizine (Zyrtec)"],
-    "fever": ["Acetaminophen (Tylenol)", "Ibuprofen (Advil)"],
-    "cold": ["Decongestants (Sudafed)", "Saline nasal sprays"],
-    "sore throat": ["Lozenges", "Warm salt water gargle"],
+    ("headache","migrane","headaches","head ache","head aches","head pain","head","head pains"): ["Tylenol", "Ibuprofen (Advil)"],
+    ("cough","sore throat","coughing","coughs"): ["Dextromethorphan (Robitussin)", "Honey-based syrups"],
+    ("allergy","allergies","allergic"): ["Loratadine (Claritin)", "Cetirizine (Zyrtec)"],
+    ("fever","sick"): ["Acetaminophen (Tylenol)", "Ibuprofen (Advil)"],
+    ("cold","sick","sickness"): ["Decongestants (Sudafed)", "Saline nasal sprays"],
     "nausea": ["Bismuth subsalicylate (Pepto-Bismol)", "Ginger supplements"],
     "diarrhea": ["Loperamide (Imodium)", "Oral rehydration solutions"],
-    "constipation": ["Fiber supplements", "Stool softeners (Colace)"],
-    "heartburn": ["Antacids (Tums)", "H2 blockers (Ranitidine)"],
-    "runny nose": ["Antihistamines (Claritin)", "Nasal corticosteroids (Flonase)"],
-    "sneezing": ["Antihistamines (Claritin)", "Nasal corticosteroids (Flonase)"],
-    "congestion": ["Decongestants (Sudafed)", "Saline nasal sprays"],
-    "muscle pain": ["Acetaminophen (Tylenol)", "Ibuprofen (Advil)"],
+    ("constipation", "constipated","constipate"): ["Fiber supplements", "Stool softeners (Colace)"],
+    ("heartburn","heart burn","indigestion", "indigest","sour","sour stomach"): ["Antacids (Tums)", "H2 blockers (Ranitidine)"],
+    ("runny nose","runny"): ["Antihistamines (Claritin)", "Nasal corticosteroids (Flonase)"],
+    ("sneezing", "sneeze"): ["Antihistamines (Claritin)", "Nasal corticosteroids (Flonase)"],
+    ("congestion","stuffy", "stuffed nose", "stuffy nose", "nose congestion", "congest"): ["Decongestants (Sudafed)", "Saline nasal sprays"],
+    ("muscle pain", "sore muscle", "sore muscles", "muscle sore", "muscle sores"): ["Acetaminophen (Tylenol)", "Ibuprofen (Advil)"],
     ("toothache", "tooth pain", "tooth", "teethache", "teeth ache", "teeth pain"): ["Acetaminophen (Tylenol)", "Ibuprofen (Advil)"],
     ("insomnia", "sleep", "sleeping"): ["Melatonin", "Diphenhydramine (Benadryl)"],
     ("cut", "cuts"): ["Antiseptic ointments (Neosporin)", "Bandages"],
     ("burn", "burns"): ["Aloe vera gel", "Hydrocortisone cream"],
     ("insect bite", "mosquito bite", "bug bite", "bugbite", "bite"): ["Hydrocortisone cream", "Antihistamines (Claritin)"],
-    "sunburn": ["Aloe vera gel", "Ibuprofen (Advil)"],
+    ("sunburn", "sun burn"): ["Aloe vera gel", "Ibuprofen (Advil)"],
     ("itch", "itchy", "scratchy"): ["Hydrocortisone cream", "Antihistamines (Claritin)"],
     ("earache", "ear pain", "ear", "ears"): ["Acetaminophen (Tylenol)", "Ibuprofen (Advil)"],
     ("dry eyes", "dry eye"): ["Artificial tears", "Lubricating eye ointments"],
