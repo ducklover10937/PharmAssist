@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="PharmAssist",
-    page_icon="PharmAssist Favi.ico",
+    page_icon="PharmAssistFavi.ico",
     layout="centered",
     initial_sidebar_state="expanded",
 )
@@ -64,3 +64,4 @@ def recommend(symptom):
 if st.button("Get Recommendation"):
     st.write("### Recommendation:")
     st.success(recommend(symptom))
+
