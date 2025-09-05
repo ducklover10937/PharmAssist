@@ -1,5 +1,12 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="PharmAssist",
+    page_icon="💊",
+    layout="centered",
+    initial_sidebar_state="expanded",
+)
+
 st.title("PharmAssist")
 st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always consult a " \
@@ -38,7 +45,7 @@ medDict = {
     ("joint pain", "inflammation", "back pain"): ["Acetaminophen (Tylenol)", "Ibuprofen (Advil)"],
     ("fungal", "fungal infection", "fungal infections"): ["Antifungal creams (Lotrimin)", "Antifungal powders"],
     ("acne", "pimple", "pimples"): ["Benzoyl peroxide", "Salicylic acid"],
-    "cold sore": ["Docosanol (Abreva)", "Lysine supplements"]
+    ("cold sore","cold sores","coldsore"): ["Docosanol (Abreva)", "Lysine supplements"]
 }
 
 def recommend(symptom):
