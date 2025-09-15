@@ -9,8 +9,7 @@ st.set_page_config(
 
 st.title("PharmAssistant")
 st.write("Your Over-the-Counter (OTC) medication recommender")
-st.caption("Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
-"Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
+st.caption("Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication! \n\n Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
 
 chat = st.text_area("Describe your symptoms, responses, or concerns:")
 
@@ -75,5 +74,6 @@ def respond(chat):
 if st.button("Send"):
     st.write("### Recommendation:")
     st.success(respond(chat))
+
 
 
