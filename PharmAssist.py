@@ -12,7 +12,7 @@ st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 "Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
 
-symptom = st.text_area("Describe your symptoms:")
+chat = st.text_area("Describe your symptoms or type your response/concern:")
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
@@ -48,23 +48,30 @@ medDict = {
     ("lactose", "lactose intolerance", "lactose intolerant", "intolerant"): ["Lactaid (Lactase Enzyme)"]
 }
 
-def recommend(symptom):
-    symptom = symptom.lower() 
+sEntry = False
+
+ynDict = {
+    ("yes", "yeah", "yea", "yess", "yesss", "yessss", "yesssss", "yup", "yupp", "yups", "ok", "okay", "okok", "okayokay", "okays", "oks", "ye", "yee", "yurp"): True,
+    ("no", "nah", "nope", "nop", "naw", "nawt", "nay", "nays", "noo", "nooo", "noooo", "nooooo", "never", "na", "nos", ""): False
+}
+
+def respond(chat):
+    chat = chat.lower() 
 
     for sympt, meds in medDict.items(): 
         if isinstance(sympt, tuple):
             for s in sympt:
-                if s in symptom:
+                if s in chat:
+                    sEntry = True
                     return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg
-        elif sympt in symptom:
+        elif sympt in chat:
+            sEntry = True
             return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg
     return errorMsg
+        #if sEntry == True:
+            
         
 
-if st.button("Get Recommendation"):
+if st.button("Send"):
     st.write("### Recommendation:")
-    st.success(recommend(symptom))
-
-
-
-
+    st.success(respond(chat))
