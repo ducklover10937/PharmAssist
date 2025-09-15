@@ -67,13 +67,13 @@ def respond(chat):
             sEntry = True
             return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg
     return errorMsg
-        #if sEntry == True:
-            
-        
+      #  if sEntry == True:
+          #  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.2982859942797!2d144.9630576153164!3d-37.81410717975147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11c39d%3A0x5045675218d61f0!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1678901234567!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
 
 if st.button("Send"):
     st.write("### Recommendation:")
     st.success(respond(chat))
+
 
 
 
