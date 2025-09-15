@@ -1,13 +1,13 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="PharmAssist",
+    page_title="PharmAssistant",
     page_icon="PharmAssistFavi.ico",
     layout="centered",
     initial_sidebar_state="expanded",
 )
 
-st.title("PharmAssist")
+st.title("PharmAssistant")
 st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 "Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
@@ -65,3 +65,4 @@ def recommend(symptom):
 if st.button("Get Recommendation"):
     st.write("### Recommendation:")
     st.success(recommend(symptom))
+
