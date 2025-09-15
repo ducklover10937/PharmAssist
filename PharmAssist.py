@@ -14,7 +14,7 @@ st.caption("Please note that PharmBot is not a substitute for professional medic
 
 symptom = st.text_area("Describe your symptoms:")
 
-msg = "Remember to always consult your pharmacist or check the product label for personal appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
+msg = "Remember to always consult your pharmacist or check the product label for personal appropriate dosages! \n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
 
 medDict = {
@@ -64,4 +64,5 @@ def recommend(symptom):
 if st.button("Get Recommendation"):
     st.write("### Recommendation:")
     st.success(recommend(symptom))
+
 
