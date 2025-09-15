@@ -63,4 +63,5 @@ def recommend(symptom):
 
 if st.button("Get Recommendation"):
     st.write("### Recommendation:")
-    st.markdown(recommend(symptom))
+    st.success(recommend(symptom))
+
