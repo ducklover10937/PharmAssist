@@ -56,9 +56,9 @@ def recommend(symptom):
         if isinstance(sympt, tuple):
             for s in sympt:
                 if s in symptom:
-                    return "Here are some popular OTC medications you can consider for your symptoms: " + ", \n".join(meds) + ". \n\n" + msg
+                    return "Here are some popular OTC medications you can consider for your symptoms: \n" + ", ".join(meds) + ". \n\n" + msg
         elif sympt in symptom:
-            return "Here are some popular OTC medications you can consider for your symptoms: " + ", \n".join(meds) + ". \n\n" + msg
+            return "Here are some popular OTC medications you can consider for your symptoms: \n" + ", ".join(meds) + ". \n\n" + msg
     return errorMsg
         
 
