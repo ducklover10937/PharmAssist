@@ -35,7 +35,7 @@ medDict = {
     ("insomnia", "sleep", "sleeping"): ["Melatonin (Hormone Inducer)", "ZzzQuil (Diphenhydramine)", "Benadryl (Diphenhydramine)"],
     ("cut", "cuts"): ["Neosporin (Neomycin Sulfate)", "Polysporin (Bacitracin Zinc)"],
     ("burn", "burns", "blister", "blisters"): ["Neosporin (Neomycin Sulfate)", "Polysporin (Bacitracin Zinc)", "Advil (Ibuprofen), "Motrin (Ibuprofen)", "Tylenol (Acetaminophen)", "Vaseline (Petroleum Jelly)", "Aloe Vera Gel"],
-    ("insect bite", "mosquito bite", "bug bite", "bugbite", "bite"): ["Hydrocortisone cream", "Calamine lotion (Zinc Oxide)", "Tylenol (Acetaminophen)", "Advil (Ibuprofen)]", "Motrin (Ibuprofen)", "Zyrtec (Antihistamine/Cetirizine)",
+    ("insect bite", "mosquito bite", "bug bite", "bugbite", "bite"): ["Hydrocortisone cream", "Calamine lotion (Zinc Oxide)", "Tylenol (Acetaminophen)", "Advil (Ibuprofen)", "Motrin (Ibuprofen)", "Zyrtec (Antihistamine/Cetirizine)"],
     ("sunburn", "sun burn", "flakey", "flake", "flakes"): ["1% Hydrocortisone cream", "Advil (Ibuprofen)", "Aloe Vera Gel", "Calamine lotion (Zinc Oxide)"],
     ("itch", "itchy", "scratchy"): ["Calamine lotion (Zinc Oxide)"],
     ("earache", "ear pain", "ear", "ears"): ["Tylenol (Acetaminophen)", "Advil (Ibuprofen)", "Motrin (Ibuprofen)"],
@@ -65,5 +65,6 @@ def recommend(symptom):
 if st.button("Get Recommendation"):
     st.write("### Recommendation:")
     st.success(recommend(symptom))
+
 
 
