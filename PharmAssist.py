@@ -33,20 +33,20 @@ medDict = {
     ("muscle pain", "sore muscle", "sore muscles", "muscle sore", "muscle sores", "muscle", "muscles"): ["Acetaminophen (Tylenol)", "Ibuprofen (Advil)", "Advil (NSAID)"],
     ("toothache", "tooth pain", "tooth", "teethache", "teeth ache", "teeth pain"): ["Motrin (Ibuprofen)", "Advil (Ibuprofen)", "Orajel (Benzocaine)", "Advil (NSAID)"],
     ("insomnia", "sleep", "sleeping"): ["Melatonin (Hormone Inducer)", "ZzzQuil (Diphenhydramine)", "Benadryl (Diphenhydramine)"],
-    ("cut", "cuts"): ["Neosporin (Neomycin Sulfate)", "Polysporin (Bacitracin Zinc)"],
+    ("cut", "cuts","scratch","open wound"): ["Neosporin (Neomycin Sulfate)", "Polysporin (Bacitracin Zinc)"],
     ("burn", "burns", "blister", "blisters"): ["Neosporin (Neomycin Sulfate)", "Polysporin (Bacitracin Zinc)", "Advil (Ibuprofen)", "Motrin (Ibuprofen)", "Tylenol (Acetaminophen)", "Vaseline (Petroleum Jelly)", "Aloe Vera Gel"],
     ("insect bite", "mosquito bite", "bug bite", "bugbite", "bite"): ["Hydrocortisone cream", "Calamine lotion (Zinc Oxide)", "Tylenol (Acetaminophen)", "Advil (Ibuprofen)", "Motrin (Ibuprofen)", "Zyrtec (Antihistamine/Cetirizine)"],
     ("sunburn", "sun burn", "flakey", "flake", "flakes"): ["1% Hydrocortisone cream", "Advil (Ibuprofen)", "Aloe Vera Gel", "Calamine lotion (Zinc Oxide)"],
-    ("itch", "itchy", "scratchy"): ["Calamine lotion (Zinc Oxide)"],
+    ("itch", "itchy", "scratchy", "rash"): ["Calamine lotion (Zinc Oxide)"],
     ("earache", "ear pain", "ear", "ears"): ["Tylenol (Acetaminophen)", "Advil (Ibuprofen)", "Motrin (Ibuprofen)"],
     ("dry eyes", "dry eye"): ["Visine (Tetrahydrozoline)", "Artificial tears", "Systane Ultra (Polyethylene Glycol/Propylene Glycol)"],
     ("stomachache", "stomach ache"): ["Tums (Antacids/Calcium Carbonate)", "Pepto-Bismol (Bismuth Subsalicylate)", "Simethicone"],
     ("menstrual cramps", "period", "menstrual", "period cramp", "menstrual cramp", "cramp", "cramps"): ["Advil (Ibuprofen)", "Motrin (Ibuprofen)", "Aleve (Naproxen Sodium)"],
     ("joint pain", "inflammation", "back pain"): ["Aspirin (NSAID)", "Tylenol (Acetaminophen)", "Motrin IB (Ibuprofen)", "Advil (Ibuprofen)"],
-    ("fungal", "fungal infection", "fungal infections"): ["Antifungal creams (Lotrimin)", "Antifungal powders"],
-    ("acne", "pimple", "pimples"): ["Benzoyl peroxide", "Salicylic acid"],
-    ("cold sore", "cold sores", "coldsore"): ["Docosanol (Abreva)", "Lysine supplements"],
-    ("lactose", "lactose intolerance", "lactose intolerant", "intolerant"): ["Lactase supplements (Lactaid)"]
+    ("fungal", "fungal infection", "fungal infections"): ["Lotrimin (Antifungal/Clotrimazole)"],
+    ("acne", "pimple", "pimples"): ["Differin gel (Adapalene)", "Neutrogena On-the-Spot Acne Treatment (Benzoyl Peroxide)", "Cerave Acne Control Cleanser (Salicylic Acid)"],
+    ("cold sore", "cold sores", "coldsore"): ["Abreva (Docosanol)", "Orajel (Benzocaine)"],
+    ("lactose", "lactose intolerance", "lactose intolerant", "intolerant"): ["Lactaid (Lactase Enzyme)"]
 }
 
 def recommend(symptom):
@@ -56,16 +56,12 @@ def recommend(symptom):
         if isinstance(sympt, tuple):
             for s in sympt:
                 if s in symptom:
-                    return "For your symptom(s), you can consider: " + ", ".join(meds) + ". " + msg
+                    return "Here are some popular OTC medications you can consider for your symptoms: " + ", \n".join(meds) + ". \n\n" + msg
         elif sympt in symptom:
-            return "Here are some popular OTC medications you can consider: " + ", ".join(meds) + ". " + msg
+            return "Here are some popular OTC medications you can consider for your symptoms: " + ", \n".join(meds) + ". \n\n" + msg
     return errorMsg
         
 
 if st.button("Get Recommendation"):
     st.write("### Recommendation:")
     st.success(recommend(symptom))
-
-
-
-
