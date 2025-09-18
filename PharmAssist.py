@@ -78,7 +78,7 @@ if "ynRespond" not in st.session_state:
 if "chatHistory" not in st.session_state:
     st.session_state.chatHistory = []
 
-if st.button("Send"):
+if st.button("Send") and chat.strip() != "":
     st.session_state.chatHistory.append(chat)
 
     if st.session_state.ynRespond:
@@ -98,4 +98,10 @@ if st.button("Send"):
         st.write("### Recommendation:")
         st.session_state.chatHistory.append(recMatch)
 
-st.text_area("Type a new response, concern, or symptom", key = "input", value = "", height=50)
+chatBox = st.empty()
+
+for text in st.session_state.chatHistory:
+    if "<iframe" in text:
+        chatBox.components.v1.html(text, height=500)
+    else:
+        st.write(text)
