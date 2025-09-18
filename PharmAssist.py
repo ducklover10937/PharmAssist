@@ -81,7 +81,7 @@ if st.button("Send"):
         if yn is True:
             st.write("### Nearby Pharmacies:")
             st.components.v1.html(
-                '<iframe src="https://www.google.com/maps/search/pharmacy+near+me" width="100%" height="500"></iframe>',
+                '<iframe src="https://www.google.com/maps/search/pharmacy+near+me/@13.4944287,144.7907148,14z?entry=ttu&g_ep=EgoyMDI1MDkxNS4wIKXMDSoASAFQAw%3D%3D" width="100%" height="500"></iframe>',
                 height=500
             )
         elif yn is False:
@@ -93,3 +93,4 @@ if st.button("Send"):
             st.session_state.ynRespond = True
         st.write("### Recommendation:")
         st.success(recMatch)
+
