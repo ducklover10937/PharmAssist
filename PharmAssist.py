@@ -104,4 +104,5 @@ for text in st.session_state.chatHistory:
     if "<iframe" in text:
         chatBox.components.v1.html(text, height=500)
     else:
-        st.chatBox.write(text)
+        chatBox.write(text)
+
