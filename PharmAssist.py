@@ -9,7 +9,8 @@ st.set_page_config(
 
 st.title("PharmAssistant")
 st.write("Your Over-the-Counter (OTC) medication recommender")
-st.caption("Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication! \n\n Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
+st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
+"Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
 
 chat = st.text_area("Describe your symptoms, responses, or concerns:")
 
@@ -47,8 +48,6 @@ medDict = {
     ("lactose", "lactose intolerance", "lactose intolerant", "intolerant"): ["Lactaid (Lactase Enzyme)"]
 }
 
-sEntry = False
-
 ynDict = {
     ("yes", "yeah", "yea", "yess", "yesss", "yessss", "yesssss", "yup", "yupp", "yups", "ok", "okay", "okok", "okayokay", "okays", "oks", "ye", "yee", "yurp"): True,
     ("no", "nah", "nope", "nop", "naw", "nawt", "nay", "nays", "noo", "nooo", "noooo", "nooooo", "never", "na", "nos", ""): False
@@ -61,19 +60,29 @@ def respond(chat):
         if isinstance(sympt, tuple):
             for s in sympt:
                 if s in chat:
-                    sEntry = True
-                    return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg
+                    return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg, True
         elif sympt in chat:
-            sEntry = True
-            return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg
-    return errorMsg
-      #  if sEntry == True:
-          #  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.2982859942797!2d144.9630576153164!3d-37.81410717975147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11c39d%3A0x5045675218d61f0!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1678901234567!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
+            return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg, True
+    return errorMsg, False
+
+def yesno(chat):
+    chat = chat.lower()
+    for yn, y in ynDict.items():
+        if chat in yn:
+            return y
+    return None
 
 if st.button("Send"):
-    st.write("### Recommendation:")
-    st.success(respond(chat))
-
-
-
-
+    if st.session_state.get("yn", False):
+        yn = yesno(chat)
+        if yn is True:
+            st.write("### Nearby Pharmacies:")
+            st.components.html(
+                '<iframe src="https://www.google.com/maps/search/pharmacy+near+me" width="100%" height="500"></iframe>',
+                height=500
+            )
+        elif yn is False:
+            st.write("Okay, just be sure to always consult your pharmacist or check the product label for appropriate dosages!")
+    else:
+        st.write("### Recommendation:")
+        st.success(respond(chat))
