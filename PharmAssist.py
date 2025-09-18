@@ -98,10 +98,10 @@ if st.button("Send") and chat.strip() != "":
         st.write("### Recommendation:")
         st.session_state.chatHistory.append(recMatch)
 
-chatBox = st.empty()
+chatBox = st.container()
 
 for text in st.session_state.chatHistory:
     if "<iframe" in text:
         chatBox.components.v1.html(text, height=500)
     else:
-        st.write(text)
+        st.chatBox.write(text)
