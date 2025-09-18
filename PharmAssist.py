@@ -89,6 +89,6 @@ if st.button("Send"):
         st.session_state.ynRespond = False
     else:
         recMatch, recAsk = respond(chat)
-        recAsk = st.session_state.ynRespond
+        st.session_state.ynRespond = recAsk
         st.write("### Recommendation:")
         st.success(recMatch)
