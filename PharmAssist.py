@@ -92,4 +92,5 @@ if st.button("Send"):
         if recMatch:
             st.session_state.ynRespond = True
         st.write("### Recommendation:")
-        st.success(respond(chat))
+        st.markdown(respond(chat))
+
