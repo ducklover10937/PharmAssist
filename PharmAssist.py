@@ -80,7 +80,7 @@ if st.button("Send"):
         yn = yesno(chat)
         if yn is True:
             st.write("### Nearby Pharmacies:")
-            st.components.html(
+            st.components.v1.html(
                 '<iframe src="https://www.google.com/maps/search/pharmacy+near+me" width="100%" height="500"></iframe>',
                 height=500
             )
@@ -92,4 +92,4 @@ if st.button("Send"):
         if recMatch:
             st.session_state.ynRespond = True
         st.write("### Recommendation:")
-        st.success(respond(chat))
+        st.success(recMatch)
