@@ -60,9 +60,9 @@ def respond(chat):
         if isinstance(sympt, tuple):
             for s in sympt:
                 if s in chat:
-                    return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg, True
+                    return "Here are some popular OTC medications you can consider for your symptoms: \n- " + "\n- ".join(meds) + "\n\n" + msg, True
         elif sympt in chat:
-            return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg, True
+            return "Here are some popular OTC medications you can consider for your symptoms: \n- " + "\n- ".join(meds) + "\n\n" + msg, True
     return errorMsg, False
 
 def yesno(chat): 
@@ -93,4 +93,5 @@ if st.button("Send"):
             st.session_state.ynRespond = True
         st.write("### Recommendation:")
         st.markdown(respond(chat))
+
 
