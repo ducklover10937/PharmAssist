@@ -65,15 +65,18 @@ def respond(chat):
             return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg, True
     return errorMsg, False
 
-def yesno(chat):
-    chat = chat.lower()
-    for yn, y in ynDict.items():
-        if chat in yn:
-            return y
+def yesno(chat): 
+    chat = chat.lower().strip() 
+    for yn, y in ynDict.items(): 
+        if chat in yn: 
+            return y 
     return None
 
+if "ynRespond" not in st.session_state:
+        st.session_state.ynRespond = False
+
 if st.button("Send"):
-    if st.session_state.get("yn", False):
+    if st.session_state.ynRespond:
         yn = yesno(chat)
         if yn is True:
             st.write("### Nearby Pharmacies:")
@@ -83,6 +86,10 @@ if st.button("Send"):
             )
         elif yn is False:
             st.write("Okay, just be sure to always consult your pharmacist or check the product label for appropriate dosages!")
+        st.session_state.ynRespond = False
     else:
+        recMatch = respond(chat)
+        if recMatch:
+            st.session_state.ynRespond = True
         st.write("### Recommendation:")
         st.success(respond(chat))
