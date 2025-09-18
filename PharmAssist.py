@@ -81,7 +81,7 @@ if st.button("Send"):
         if yn is True:
             st.write("### Nearby Pharmacies:")
             st.components.v1.html(
-                '<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31037.348342169684!2d144.79071477180486!3d13.494510482085245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spharmacy%20near%20me!5e0!3m2!1sko!2s!4v1758199426931!5m2!1sko!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+                '<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31037.348342169684!2d144.79071477180486!3d13.494510482085245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spharmacy%20near%20me!5e0!3m2!1sko!2s!4v1758199426931!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
                 height=500
             )
         elif yn is False:
@@ -92,3 +92,4 @@ if st.button("Send"):
         st.session_state.ynRespond = recAsk
         st.write("### Recommendation:")
         st.success(recMatch)
+
