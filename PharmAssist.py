@@ -7,14 +7,12 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-#def style()
-
 st.title("PharmAssistant")
 st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 "Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
 
-chat = st.text_area("Describe your symptoms, responses, or concerns:")
+chat = st.text_area("Describe your symptoms, health concerns, or requests:", key="chatInput")
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
@@ -73,24 +71,35 @@ def yesno(chat):
         if chat in yn: 
             return y 
     return None
-    
+
+if "chatHistory" in st.session_state:
+    st.session_state.chatHistory = []
+
 if "ynRespond" not in st.session_state:
         st.session_state.ynRespond = False
 
-if st.button("Send"):
+for chatEntry in st.session_state.chatHistory:
+    if "<iframe" in chatEntry:
+        st.components.v1.html(chatEntry, height=500)
+    else:
+        st.write(chatEntry)
+
+if st.button("Send") and chat.strip() != "":
+    st.session_state.chatHistory.append(chat)
+
     if st.session_state.ynRespond:
         yn = yesno(chat)
         if yn is True:
-            st.write("### What village are you located in? \n\n Here are some nearby pharmacies:")
-            st.components.v1.html(
+            st.session_state.chatHistory.append("### What village are you located in? \n\n Here are some nearby pharmacies:")
+            st.session_state.chatHistory.append(
                 '<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31037.348342169684!2d144.79071477180486!3d13.494510482085245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spharmacy%20near%20me!5e0!3m2!1sko!2s!4v1758199426931!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
                 height=500
             )
         elif yn is False:
-            st.write("Okay, just be sure to always consult your pharmacist or check the product label for appropriate dosages!")
+            st.session_state.chatHistory.append("Okay, just be sure to always consult your pharmacist or check the product label for appropriate dosages!")
         st.session_state.ynRespond = False
     else:
         recMatch, recAsk = respond(chat)
         st.session_state.ynRespond = recAsk
-        st.write("### Recommendation:")
-        st.success(recMatch)
+        st.session_state.chatHistory.append("### Recommendation:")
+        st.session_state.chatHistory.append(recMatch)
