@@ -7,6 +7,8 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+#def style()
+
 st.title("PharmAssistant")
 st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
@@ -71,7 +73,7 @@ def yesno(chat):
         if chat in yn: 
             return y 
     return None
-
+    
 if "ynRespond" not in st.session_state:
         st.session_state.ynRespond = False
 
@@ -92,5 +94,3 @@ if st.button("Send"):
         st.session_state.ynRespond = recAsk
         st.write("### Recommendation:")
         st.success(recMatch)
-
-
