@@ -5,8 +5,12 @@ st.set_page_config(
     page_icon="PharmAssistFavi.ico",
     layout="centered",
     initial_sidebar_state="expanded",
-    font = "Times New Roman"
 )
+
+[theme]
+font = "sans-serif"
+headingFont = "sans-serif"
+codeFont = "monospace"
 
 st.title("PharmAssistant")
 st.write("Your Over-the-Counter (OTC) medication recommender")
@@ -93,3 +97,4 @@ if st.button("Send"):
         st.session_state.ynRespond = recAsk
         st.write("### Recommendation:")
         st.success(recMatch)
+
