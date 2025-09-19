@@ -84,7 +84,7 @@ if st.button("Send") and chat.strip() != "":
     if st.session_state.ynRespond:
         yn = yesno(chat)
         if yn is True:
-            st.session_state.chatHistory.append("### What village are you located in? \n\n Here are some nearby pharmacies:")
+            st.session_state.chatHistory.append("What village are you located in? \n\n Here are some nearby pharmacies:")
             st.session_state.chatHistory.append(
                 """ 
                 <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31037.348342169684!2d144.79071477180486!3d13.494510482085245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spharmacy%20near%20me!5e0!3m2!1sen!2s" width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> </iframe> 
@@ -96,7 +96,7 @@ if st.button("Send") and chat.strip() != "":
     else:
         recMatch, recAsk = respond(chat)
         st.session_state.ynRespond = recAsk
-        st.session_state.chatHistory.append("### Recommendation:")
+        st.session_state.chatHistory.append("Recommendation:")
         st.session_state.chatHistory.append(recMatch)
 
     st.rerun()
@@ -106,7 +106,7 @@ with chatContainer:
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry, height=700)
         else:
-            if "### Recommendation" or "Here are some popular OTC medications you can consider for your symptoms:" in chatEntry:
+            if "Recommendation" in chatEntry or "Here are some popular OTC medications you can consider for your symptoms" in chatEntry:
                 st.markdown("<p style='background-color: #f5c6c6; color: black; padding: 10px; border-radius: 3px;'>" + chatEntry.replace("\n", "<br>") + "</p>", unsafe_allow_html=True)
             else:
                 st.markdown("<p style='background-color: #d8ebf2; color: black; padding: 10px; border-radius: 3px;'>" + chatEntry.replace("\n", "<br>") + "</p>", unsafe_allow_html=True)
