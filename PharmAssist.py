@@ -72,7 +72,7 @@ def yesno(chat):
             return y 
     return None
 
-if "chatHistory" in st.session_state:
+if "chatHistory" not in st.session_state:
     st.session_state.chatHistory = []
 
 if "ynRespond" not in st.session_state:
@@ -103,3 +103,4 @@ if st.button("Send") and chat.strip() != "":
         st.session_state.ynRespond = recAsk
         st.session_state.chatHistory.append("### Recommendation:")
         st.session_state.chatHistory.append(recMatch)
+
