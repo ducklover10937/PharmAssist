@@ -12,7 +12,7 @@ st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 "Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
 
-chat = st.text_area("Describe your symptoms, health concerns, or requests:", value="", key="chatInput")
+chat = st.text_area("Describe your symptoms, health concerns, or requests:", value=st.session_state.get("chatInput", ""), key="chatInput")
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
@@ -102,7 +102,7 @@ if st.button("Send") and chat.strip() != "":
         st.session_state.chatHistory.append("### Recommendation:")
         st.session_state.chatHistory.append(recMatch)
 
-    st.session_state.chatInput = ""
+    st.session_state.chatInput = None
 
 for chatEntry in st.session_state.chatHistory:
     if "<iframe" in chatEntry:
