@@ -103,4 +103,5 @@ if st.button("Send") and chat.strip() != "":
         st.session_state.ynRespond = recAsk
         st.session_state.chatHistory.append("### Recommendation:")
         st.session_state.chatHistory.append(recMatch)
-
+        
+    st.session_state.chatInput = ""
