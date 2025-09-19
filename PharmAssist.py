@@ -12,6 +12,15 @@ st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 "Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
 
+if "chatHistory" not in st.session_state:
+    st.session_state.chatHistory = []
+
+if "chatInput" not in st.session_state:
+    st.session_state.chatInput = ""
+
+if "ynRespond" not in st.session_state:
+        st.session_state.ynRespond = False
+
 chat = st.text_area("Describe your symptoms, health concerns, or requests:", value=st.session_state.get("chatInput", ""), key="chatInput")
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
@@ -72,18 +81,8 @@ def yesno(chat):
             return y 
     return None
 
-if "chatHistory" not in st.session_state:
-    st.session_state.chatHistory = []
-
-if "chatInput" not in st.session_state:
-    st.session_state.chatInput = ""
-
-if "ynRespond" not in st.session_state:
-        st.session_state.ynRespond = False
-
 if st.button("Send") and chat.strip() != "":
     st.session_state.chatHistory.append(chat)
-
     if st.session_state.ynRespond:
         yn = yesno(chat)
         if yn is True:
@@ -102,7 +101,7 @@ if st.button("Send") and chat.strip() != "":
         st.session_state.chatHistory.append("### Recommendation:")
         st.session_state.chatHistory.append(recMatch)
 
-    st.session_state.chatInput = None
+    st.session_state.chatInput = ""
 
 for chatEntry in st.session_state.chatHistory:
     if "<iframe" in chatEntry:
