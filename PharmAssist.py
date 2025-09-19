@@ -12,7 +12,7 @@ st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 "Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.")
 
-chat = st.text_area("Describe your symptoms, health concerns, or requests:", key="chatInput")
+chat = st.text_area("Describe your symptoms, health concerns, or requests:", value="", key="chatInput")
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
@@ -109,4 +109,3 @@ for chatEntry in st.session_state.chatHistory:
         st.components.v1.html(chatEntry)
     else:
         st.write(chatEntry)
-
