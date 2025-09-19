@@ -102,11 +102,15 @@ if st.button("Send") and chat.strip() != "":
         st.session_state.chatHistory.append("### Recommendation:")
         st.session_state.chatHistory.append(recMatch)
 
+    st.session_state.chatInput = ""
+    st.rerun()
+
 with chatContainer:
     for chatEntry in st.session_state.chatHistory:
         if "<iframe" in chatEntry:
-            st.components.v1.html(chatEntry)
+            st.components.v1.html(chatEntry, height=700)
         else:
-            st.markdown(chatEntry)
-
-
+            if "### Recommendation" in chatEntry:
+                st.markdown("<p style='background-color: #d8ebf2; padding: 10px; border-radius: 3px;'>" + chatEntry.replace("\n", "<br>") + "</p>", unsafe_allow_html=True)
+            else:
+                st.markdown("<p style='background-color: #f5c6c6; padding: 10px; border-radius: 3px;'>" + chatEntry.replace("\n", "<br>") + "</p>", unsafe_allow_html=True)
