@@ -7,11 +7,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-[theme]
-font = "sans-serif"
-headingFont = "sans-serif"
-codeFont = "monospace"
-
 st.title("PharmAssistant")
 st.write("Your Over-the-Counter (OTC) medication recommender")
 st.caption("Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
@@ -97,4 +92,5 @@ if st.button("Send"):
         st.session_state.ynRespond = recAsk
         st.write("### Recommendation:")
         st.success(recMatch)
+
 
