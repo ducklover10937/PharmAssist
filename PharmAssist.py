@@ -5,6 +5,7 @@ st.set_page_config(
     page_icon="PharmAssistFavi.ico",
     layout="centered",
     initial_sidebar_state="expanded",
+    font = "Times New Roman"
 )
 
 st.title("PharmAssistant")
