@@ -15,9 +15,6 @@ st.caption("Please note that PharmBot is not a substitute for professional medic
 if "chatHistory" not in st.session_state:
     st.session_state.chatHistory = []
 
-if "chatInput" not in st.session_state:
-    st.session_state.chatInput = ""
-
 if "ynRespond" not in st.session_state:
         st.session_state.ynRespond = False
 
@@ -25,7 +22,7 @@ msg = "Remember to always consult your pharmacist or check the product label for
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
 
 chatContainer = st.container()
-chat = st.text_input("Describe your symptoms, health concerns, or requests:", value=st.session_state.get("chatInput", ""), key="chatInput")
+chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput")
 
 medDict = {
     ("headache","migrane","headaches","head ache","head aches","head pain","head","head pains"): ["Tylenol (Acetaminophen)", "Advil (Acetaminophen/Ibuprofen)", "Motrin IB (Ibuprofen)", "Aleve (Naproxen Sodium)", "Aspirin (Acetylsalicylic Acid)"],
@@ -102,7 +99,6 @@ if st.button("Send") and chat.strip() != "":
         st.session_state.chatHistory.append("### Recommendation:")
         st.session_state.chatHistory.append(recMatch)
 
-    st.session_state.chatInput = ""
     st.rerun()
 
 with chatContainer:
