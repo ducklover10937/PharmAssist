@@ -106,7 +106,7 @@ with chatContainer:
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry, height=700)
         else:
-            if "### Recommendation" in chatEntry:
+            if "### Recommendation" or "Here are some popular OTC medications you can consider for your symptoms:" in chatEntry:
                 st.markdown("<p style='background-color: #f5c6c6; color: black; padding: 10px; border-radius: 3px;'>" + chatEntry.replace("\n", "<br>") + "</p>", unsafe_allow_html=True)
             else:
                 st.markdown("<p style='background-color: #d8ebf2; color: black; padding: 10px; border-radius: 3px;'>" + chatEntry.replace("\n", "<br>") + "</p>", unsafe_allow_html=True)
