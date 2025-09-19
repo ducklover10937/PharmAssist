@@ -75,6 +75,9 @@ def yesno(chat):
 if "chatHistory" not in st.session_state:
     st.session_state.chatHistory = []
 
+if "chatInput" not in st.session_state:
+    st.session_state.chatInput = ""
+
 if "ynRespond" not in st.session_state:
         st.session_state.ynRespond = False
 
@@ -106,3 +109,4 @@ for chatEntry in st.session_state.chatHistory:
         st.components.v1.html(chatEntry)
     else:
         st.write(chatEntry)
+
