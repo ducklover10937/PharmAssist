@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.markdown("""<style>.stapp { background-color: #c1d1d4 } """)
+st.markdown("""<style>.stapp { background-color: #c1d1d4 } """, unsafe_allow_html=True)
 st.markdown("<h1 style = 'text-align: center;'>PharmAssistant</h1>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;font-size: 12px; font-style:italic'>Please note that PharmBot is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
@@ -112,6 +112,7 @@ with chatContainer: #saving chat history and displaying it
             st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 15px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 15px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
 
 
 
