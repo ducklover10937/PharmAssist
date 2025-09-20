@@ -61,12 +61,12 @@ pharmDict = {
 }
 
 if "chatHistory" not in st.session_state:
-    st.session_state.chatHistory = [] #empty chat history with Pharmassist (filled later)
+    st.session_state.chatHistory = [] #empty chat history with Pharmassistant (filled later)
 
 if "ynRespond" not in st.session_state:
-        st.session_state.ynRespond = False #if Pharmassist waits for yes or no 
+        st.session_state.ynRespond = False #if Pharmassistant waits for yes or no 
 
-def respond(chat): #PharmAssist response format
+def respond(chat): #PharmAssistant response format
     chat = chat.lower() 
 
     for sympt, meds in medDict.items(): 
@@ -86,7 +86,7 @@ def yesno(chat): #if Pharmassist gets yes or no response
 if "pharmacyFind" not in st.session_state:
     st.session_state.pharmFind = False
 
-def checkPharm(chat): #if pharmassist gets pharmacy find req
+def checkPharm(chat): #if pharmassistant gets pharmacy find req
     chat = chat.lower().strip()
     for pharmacy, tf in pharmDict.items():
         for response in pharmacy:
@@ -94,7 +94,7 @@ def checkPharm(chat): #if pharmassist gets pharmacy find req
                 return tf
     return None
 
-if st.button("Send") and chat.strip() != "": #user sends message to pharmassist
+if st.button("Send") and chat.strip() != "": #user sends message to pharmassistant
     st.session_state.chatHistory.append(chat)
     if st.session_state.ynRespond:
         yn = yesno(chat)
@@ -108,7 +108,7 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassist
         elif yn is False: #no
             st.session_state.chatHistory.append("Okay, just be sure to always consult your pharmacist or check the product label for appropriate dosages!")
         st.session_state.ynRespond = False
-    elif st.session_state.pharmFind:
+    else:
         pharmFind = checkPharm(chat)
         if pharmFind:
             st.session_state.pharmFind = True
@@ -118,11 +118,11 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassist
                 <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31037.348342169684!2d144.79071477180486!3d13.494510482085245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spharmacy%20near%20me!5e0!3m2!1sen!2s" width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> </iframe> 
                 """
             )
-    else:
-        recMatch, recAsk = respond(chat) #not a yes/no response -> if user wants recommendation/pharmacy find
-        st.session_state.ynRespond = recAsk
-        st.session_state.chatHistory.append("Recommendation:")
-        st.session_state.chatHistory.append(recMatch)
+        else:
+            recMatch, recAsk = respond(chat) #not a yes/no response -> if user wants recommendation/pharmacy find
+            st.session_state.ynRespond = recAsk
+            st.session_state.chatHistory.append("Recommendation:")
+            st.session_state.chatHistory.append(recMatch)
 
     st.rerun()
 
