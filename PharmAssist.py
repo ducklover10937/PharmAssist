@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 st.set_page_config(
     page_title="PharmAssistant",
@@ -50,7 +51,7 @@ medDict = {
 }
 
 ynDict = {
-    ("yes", "yeah", "yea", "yess", "yesss", "yessss", "yesssss", "yup", "yupp", "yups", "ok", "okay", "okok", "okayokay", "okays", "oks", "ye", "yee", "yurp", "pharmacy", "pharmacies", "drugstore", "drugstores", "pharm"): True, #yes and pharmacy requests
+    ("yes", "yeah", "yea", "yess", "yesss", "yessss", "yesssss", "yup", "yupp", "yups", "ok", "okay", "okok", "okayokay", "okays", "oks", "ye", "yee", "yurp", "yerp","pharmacy", "pharmacies", "drugstore", "drugstores", "pharm"): True, #yes and pharmacy requests
     ("no", "nah", "nope", "nop", "naw", "nawt", "nay", "nays", "noo", "nooo", "noooo", "nooooo", "never", "na", "nos"): False
 }
 
@@ -102,21 +103,13 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassist
     st.rerun()
 
 if "pendingPharm" not in st.session_state:
-    st.session_state.pendingPharm = [] 
-
-if st.session_state.pendingPharm: #delaying pharmassist response (smoother experience)
-    message=st.session_state.pendingPharm[0]
-    st.session_state.chatHistory.append({"sender": "pharm", "message": message})
-    st.session_state.pendingPharm.append(message)
-    st.rerun()
+    st.session_state.pendingPharm = None
 
 with chatContainer: #saving chat history and displaying it
     for chatEntry in st.session_state.chatHistory:        
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry, height=700)
-        elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or"Here are some popular OTC medications you can consider for your symptoms" in chatEntry:
-            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; padding: 10px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+        elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or"Here are some popular OTC medications you can consider for your symptoms" in chatEntry or errorMsg in chatEntry:
+            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; display:inline block; padding: 20px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
-            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: right; padding: 10px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
-
-
+            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; display:inline block; padding: 20px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
