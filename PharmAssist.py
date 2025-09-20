@@ -68,7 +68,7 @@ def respond(chat): #PharmAssist response format
             for s in sympt:
                 if s in chat:
                     return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg, True
-        return errorMsg, False
+    return errorMsg, False
 
 def yesno(chat): #if Pharmassist gets yes or no response
     chat = chat.lower().strip()
@@ -119,3 +119,4 @@ with chatContainer: #saving chat history and displaying it
             st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; padding: 10px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: right; padding: 10px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
