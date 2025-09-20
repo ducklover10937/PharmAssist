@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 st.set_page_config(
     page_title="PharmAssistant",
@@ -50,7 +51,7 @@ medDict = {
 }
 
 ynDict = {
-    ("yes", "yeah", "yea", "yess", "yesss", "yessss", "yesssss", "yup", "yupp", "yups", "ok", "okay", "okok", "okayokay", "okays", "oks", "ye", "yee", "yurp", "yerp","pharmacy", "pharmacies", "drugstore", "drugstores", "pharm"): True, #yes and pharmacy requests
+    ("yes", "sure","yeah", "yea", "yess", "yesss", "yessss", "yesssss", "yup", "yupp", "yups", "ok", "okay", "okok", "okayokay", "okays", "oks", "ye", "yee", "yurp", "yerp","pharmacy", "pharmacies", "drugstore", "drugstores", "pharm"): True, #yes and pharmacy requests
     ("no", "nah", "nope", "nop", "naw", "nawt", "nay", "nays", "noo", "nooo", "noooo", "nooooo", "never", "na", "nos"): False
 }
 
@@ -71,12 +72,10 @@ def respond(chat): #PharmAssist response format
 
 def yesno(chat): #if Pharmassist gets yes or no response
     chat = chat.lower().strip()
-    for yn in ynDict.items(): 
-        if chat in yn: 
-            if yn is True:
-                return True
-            if yn is False:
-                return False
+    for yn, tf in ynDict.items(): 
+        for response in yn: #if main yes/no is in ynDict
+            if response in chat: #if user input has main yes/no response
+                return tf #return true/false
     return None
 
 if st.button("Send") and chat.strip() != "": #user sends message to pharmassist
@@ -107,8 +106,8 @@ if "pendingPharm" not in st.session_state:
 with chatContainer: #saving chat history and displaying it
     for chatEntry in st.session_state.chatHistory:        
         if "<iframe" in chatEntry:
-            st.components.v1.html(chatEntry, height=700)
+            st.components.v1.html(chatEntry.replace("\n", ""), height=700)
         elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or"Here are some popular OTC medications you can consider for your symptoms" in chatEntry or errorMsg in chatEntry:
-            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; padding: 20px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 15px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
-            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; padding: 20px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 15px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
