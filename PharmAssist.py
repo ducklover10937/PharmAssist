@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 st.set_page_config(
     page_title="PharmAssistant",
@@ -110,6 +109,6 @@ with chatContainer: #saving chat history and displaying it
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry, height=700)
         elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or"Here are some popular OTC medications you can consider for your symptoms" in chatEntry or errorMsg in chatEntry:
-            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; display:inline block; padding: 20px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; padding: 20px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
-            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; display:inline block; padding: 20px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; padding: 20px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
