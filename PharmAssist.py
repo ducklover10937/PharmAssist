@@ -13,13 +13,13 @@ st.markdown("<h1 style = 'text-align: center;'>PharmAssistant</h1>", unsafe_allo
 st.markdown("<p style = 'text-align: center;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;font-size: 12px; font-style:italic'>Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 " Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.</p>", unsafe_allow_html=True)
-st.markdown("""<style>
-            .stTextInput {background-color: #d4f1ff; color: #152e33;} 
-            button {background-color: #d4f1ff; color: #152e33;}
-            label[for="chatInput"] {color: #152e33;}
-            </style>
-            """
-            , unsafe_allow_html=True)
+#st.markdown("""<style>
+          #  div.stTextInput {background-color: #d4f1ff; color: #152e33;} 
+           # button {background-color: #d4f1ff; color: #152e33;}
+            #label[for="chatInput"] {color: #152e33;}
+            #</style>
+            #"""
+            #, unsafe_allow_html=True) -> redo later
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
