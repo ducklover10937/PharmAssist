@@ -112,7 +112,7 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassista
         pharmFind = checkPharm(chat)
         if pharmFind:
             st.session_state.pharmFind = True
-            st.session_state.chatHistory.append("What village are you located in? \n Here are some nearby pharmacies:")
+            st.session_state.chatHistory.append("What village are you located in? \n\n Here are some nearby pharmacies:")
             st.session_state.chatHistory.append(
                 """ 
                 <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31037.348342169684!2d144.79071477180486!3d13.494510482085245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spharmacy%20near%20me!5e0!3m2!1sen!2s" width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> </iframe> 
@@ -137,4 +137,5 @@ with chatContainer: #saving chat history and displaying it
             st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 15px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 15px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
 
