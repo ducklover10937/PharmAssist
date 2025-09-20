@@ -13,6 +13,11 @@ st.markdown("<h1 style = 'text-align: center;'>PharmAssistant</h1>", unsafe_allo
 st.markdown("<p style = 'text-align: center;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;font-size: 12px; font-style:italic'>Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 " Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.</p>", unsafe_allow_html=True)
+st.markdown("""
+            .stTextInput {background-color: #d4f1ff; color: #152e33;}
+            button {background-color: #d4f1ff; color: #152e33;}
+            """
+            , unsafe_allow_html=True)
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
@@ -21,13 +26,13 @@ chatContainer = st.container()
 chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput") #user input
 
 medDict = {
-    ("headache","migrane","headaches","head ache","head aches","head pain","head","head pains"): ["Tylenol (Acetaminophen)", "Advil (Acetaminophen/Ibuprofen)", "Motrin IB (Ibuprofen)", "Aleve (Naproxen Sodium)", "Aspirin (Acetylsalicylic Acid)"],
+    ("headache","migraine","headaches","head ache","head aches","head pain","head","head pains"): ["Tylenol (Acetaminophen)", "Advil (Acetaminophen/Ibuprofen)", "Motrin IB (Ibuprofen)", "Aleve (Naproxen Sodium)", "Aspirin (Acetylsalicylic Acid)"],
     ("cough","sore throat","coughing","coughs"): ["Advil (Ibuprofen)", "Tylenol (Acetaminophen)", "Cough drops (Honey/Mentol/Glycerin)", "Mucinex (Guaifenesin)"],
     ("allergy","allergies","allergic"): ["Allegra (Fexofenadine)", "Zyrtec (Antihistamine/Cetirizine)", "Benadryl (Diphenhydramine)", "Claritin (Loratadine/Antihistamine)"],
     ("fever","sick", "cold", "sickness"): ["Tylenol (Acetaminophen)", "Advil (Ibuprofen)", "DayQuil/NyQuil (Acetaminophen)", "Alka-Seltzer Plus Cold & Flu (Acetaminophen)"],
     ("nausea", "nauseous"): ["Pepto Bismol (Bismuth Subsalicylate)", "Emetrol (Phosphorated Carbohydrate Solution)", "Dramamine (Antihisamine)", "Nauzene (Sodium Citrate Dihydrate)"],
     ("diarrhea", "loose bowel", "loose bowels"): ["Imodium (Loperamide)", "Pepto Bismol (Bismuth Subsalicylate)"],
-    ("constipation", "constipated","constipate"): ["MiraLAX (Polyethylene Glycol)", "Dulcolax (Bisacodyl)", "Metamucil (Pysllium Fiber)", "Stool Softeners (Emollient Laxatives)"],
+    ("constipation", "constipated","constipate"): ["MiraLAX (Polyethylene Glycol)", "Dulcolax (Bisacodyl)", "Metamucil (Psyllium Fiber)", "Stool Softeners (Emollient Laxatives)"],
     ("heartburn","heart burn","indigestion", "indigest","sour","sour stomach"): ["Tums (Antacids/Calcium Carbonate)", "Alka-Seltzer (Sodium Bicarbonate/Calcium Carbonate)", "Rolaids (Calcium Carbonate)"],
     ("runny nose","runny"): ["Claritin (Loratadine/Antihistamine)", "Zyrtec (Antihistamine)"],
     ("sneezing", "sneeze"): ["Claritin (Loratadine/Antihistamine)", "Zyrtec (Antihistamine)", "Allegra (Fexofenadine)"],
@@ -126,16 +131,11 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassista
 
     st.rerun()
 
-if "pendingPharm" not in st.session_state:
-    st.session_state.pendingPharm = None
-
 with chatContainer: #saving chat history and displaying it
     for chatEntry in st.session_state.chatHistory:        
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry.replace("\n", ""), height=700)
         elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or"Here are some popular OTC medications you can consider for your symptoms" in chatEntry or errorMsg in chatEntry or "Okay, just be sure to always consult your pharmacist" in chatEntry:
-            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 15px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
-            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 15px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
-
-
+            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
