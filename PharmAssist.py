@@ -60,9 +60,6 @@ if "chatHistory" not in st.session_state:
 if "ynRespond" not in st.session_state:
         st.session_state.ynRespond = False #if Pharmassist waits for yes or no 
 
-if "pendingPharm" not in st.session_state:
-    st.session_state.pendingPharm = [] 
-
 def respond(chat): #PharmAssist response format
     chat = chat.lower() 
 
@@ -105,22 +102,20 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassist
 
     st.rerun()
 
+if "pendingPharm" not in st.session_state:
+    st.session_state.pendingPharm = [] 
+
 if st.session_state.pendingPharm: #delaying pharmassist response (smoother experience)
     message=st.session_state.pendingPharm[0]
     st.session_state.chatHistory.append({"sender": "pharm", "message": message})
-    st.session_state.pendingPharm = None
+    st.session_state.pendingPharm.append(message)
     st.rerun()
 
 with chatContainer: #saving chat history and displaying it
-    for sender, chatEntry in st.session_state.chatHistory:        
+    for chatEntry in st.session_state.chatHistory:        
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry, height=700)
-            if sender =="pharm":
-                st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; padding: 10px; border-radius: 10px;'</div>", unsafe_allow_html=True)
-            else:
-                st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: right; padding: 10px; border-radius: 10px;'</div>", unsafe_allow_html=True)
+        elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or"Here are some popular OTC medications you can consider for your symptoms" in chatEntry:
+            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; padding: 10px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
-            if "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or"Here are some popular OTC medications you can consider for your symptoms" in chatEntry:
-                st.markdown(chatEntry)
-            else:
-                st.markdown(chatEntry)
+            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: right; padding: 10px; border-radius: 10px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
