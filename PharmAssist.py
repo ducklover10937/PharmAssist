@@ -138,7 +138,8 @@ with chatContainer: #saving chat history and displaying it
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry.replace("\n", ""), height=700)
         elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or "Here are some popular OTC medications you can consider for your symptoms" in chatEntry or errorMsg in chatEntry or "Okay, just be sure to always consult your pharmacist" in chatEntry:
-            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+            st.markdown("<div style='background-color: ##536e70; color: white; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
 
