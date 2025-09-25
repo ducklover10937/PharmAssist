@@ -115,6 +115,11 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassista
         elif yn is False: #no
             st.session_state.chatHistory.append("Okay, just be sure to always consult your pharmacist or check the product label for appropriate dosages!")
         st.session_state.ynRespond = False
+
+        # elif respond(chat)
+
+
+    
     else:
         pharmFind = checkPharm(chat)
         if pharmFind:
@@ -141,7 +146,3 @@ with chatContainer: #saving chat history and displaying it
             st.markdown("<div style='background-color: #536e70; color: #d4f1ff; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: #152e33; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
-
-
-
-
