@@ -9,8 +9,8 @@ st.set_page_config(
 
 st.markdown("""<style>.stApp { background-color: #768d91; color: #152e33; } </style>""", unsafe_allow_html=True)
 st.markdown("""<style>.stButton { background-color: #d4f1ff; color: #4d9abf; }</style>""", unsafe_allow_html=True)
-st.markdown("<h1 style = 'text-align: center;'>PharmAssistant</h1>", unsafe_allow_html=True)
-st.markdown("<p style = 'text-align: center;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
+st.markdown("<h1 style = 'text-align: center;font-size: 40 px;'>PharmAssistant</h1>", unsafe_allow_html=True)
+st.markdown("<p style = 'text-align: center;font-size: 30 px;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;font-size: 16px; font-style:italic'>Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 " Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.</p>", unsafe_allow_html=True)
 #st.markdown("""<style>
@@ -146,6 +146,7 @@ with chatContainer: #saving chat history and displaying it
             st.markdown("<div style='background-color: #536e70; color: #d4f1ff; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: #152e33; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
 
 
 
