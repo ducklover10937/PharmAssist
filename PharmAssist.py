@@ -7,7 +7,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.markdown("""<style>.stApp { background-color: #99acb0; color: #152e33; } </style>""", unsafe_allow_html=True)
+st.markdown("""<style>.stApp { background-color: #768d91; color: #152e33; } </style>""", unsafe_allow_html=True)
 st.markdown("""<style>.stButton { background-color: #d4f1ff; color: #4d9abf; }</style>""", unsafe_allow_html=True)
 st.markdown("<h1 style = 'text-align: center;'>PharmAssistant</h1>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
@@ -146,4 +146,5 @@ with chatContainer: #saving chat history and displaying it
             st.markdown("<div style='background-color: #536e70; color: #d4f1ff; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: #152e33; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
 
