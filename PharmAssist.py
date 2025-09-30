@@ -126,9 +126,6 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassista
                 """
             )
         else:
-            st.session_state.chatHistory.append("Thinking...")
-            st.rerun()
-            
             recMatch, recAsk = respond(chat) #not a yes/no response -> if user wants recommendation/pharmacy find
             st.session_state.ynRespond = recAsk
             st.session_state.chatHistory.append("Recommendation:")
