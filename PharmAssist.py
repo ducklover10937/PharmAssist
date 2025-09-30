@@ -7,11 +7,11 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-st.markdown("""<style>.stApp { background-color: #768d91; color: #152e33; } </style>""", unsafe_allow_html=True)
-st.markdown("""<style>.stButton { background-color: #d4f1ff; color: #4d9abf; }</style>""", unsafe_allow_html=True)
-st.markdown("<h1 style = 'text-align: center;font-size: 40 px; '>PharmAssistant</h1>", unsafe_allow_html=True)
-st.markdown("<p style = 'text-align: center;font-size: 30 px;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
-st.markdown("<p style = 'text-align: center;font-size: 16px; font-style:italic'>Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
+st.markdown("""<style>.stApp { background-color: #c1d1d4; color: #152e33; } </style>""", unsafe_allow_html=True)
+st.markdown("""<style>.stButton { background-color: #d4f1ff; color: #152e33; }</style>""", unsafe_allow_html=True)
+st.markdown("<h1 style = 'text-align: center; font: Times New Roman'>PharmAssistant</h1>", unsafe_allow_html=True)
+st.markdown("<p style = 'text-align: center;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
+st.markdown("<p style = 'text-align: center;font-size: 12px; font-style:italic'>Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 " Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.</p>", unsafe_allow_html=True)
 #st.markdown("""<style>
           #  div.stTextInput {background-color: #d4f1ff; color: #152e33;} 
@@ -115,11 +115,6 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassista
         elif yn is False: #no
             st.session_state.chatHistory.append("Okay, just be sure to always consult your pharmacist or check the product label for appropriate dosages!")
         st.session_state.ynRespond = False
-
-        # elif respond(chat)
-
-
-    
     else:
         pharmFind = checkPharm(chat)
         if pharmFind:
@@ -142,13 +137,7 @@ with chatContainer: #saving chat history and displaying it
     for chatEntry in st.session_state.chatHistory:        
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry.replace("\n", ""), height=700)
-        elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or "Here are some popular OTC medications you can consider for your symptoms" in chatEntry or errorMsg in chatEntry or "Okay, just be sure to always consult your pharmacist" in chatEntry:
-            st.markdown("<div style='background-color: #536e70; color: #d4f1ff; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
+        elif "Recommendation" in chatEntry or "What village are you located in?" in chatEntry or"Here are some popular OTC medications you can consider for your symptoms" in chatEntry or errorMsg in chatEntry or "Okay, just be sure to always consult your pharmacist" in chatEntry:
+            st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px; width: 100%'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
-            st.markdown("<div style='background-color: #d8ebf2; color: #152e33; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
-
-
-
-
-
-
+            st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px; width: 100%'>"+chatEntry+"</div>", unsafe_allow_html=True)
