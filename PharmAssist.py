@@ -126,6 +126,9 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassista
                 """
             )
         else:
+            st.session_state.chatHistory.append("Thinking...")
+            st.rerun()
+            
             recMatch, recAsk = respond(chat) #not a yes/no response -> if user wants recommendation/pharmacy find
             st.session_state.ynRespond = recAsk
             st.session_state.chatHistory.append("Recommendation:")
@@ -141,4 +144,3 @@ with chatContainer: #saving chat history and displaying it
             st.markdown("<div style='background-color: #f5c6c6; color: black; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; border-radius: 20px; max-width: 70%'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: black; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px; max-width: 70%'>"+chatEntry+"</div>", unsafe_allow_html=True)
-
