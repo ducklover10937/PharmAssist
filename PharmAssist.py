@@ -18,7 +18,7 @@ msg = "Remember to always consult your pharmacist or check the product label for
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
 
 chatContainer = st.container()
-chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput") #user input
+chat = st.text_input("Describe your symptoms, health concerns, or requests:", key="chatInput") #user input
 
 medDict = {
     ("headache","migraine","headaches","head ache","head aches","head pain","head","head pains"): ["Tylenol (Acetaminophen)", "Advil (Acetaminophen/Ibuprofen)", "Motrin IB (Ibuprofen)", "Aleve (Naproxen Sodium)", "Aspirin (Acetylsalicylic Acid)"],
@@ -135,6 +135,7 @@ with chatContainer:
             st.markdown("<div style='background-color: #536e70; color: #d4f1ff; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; max-width: 70%; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: #152e33; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px; max-width: 70%'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
 
 
 
