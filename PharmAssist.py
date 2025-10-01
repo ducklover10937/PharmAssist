@@ -13,8 +13,6 @@ st.markdown("<h1 style = 'text-align: center;font-size: 40 px;'>PharmAssistant</
 st.markdown("<p style = 'text-align: center;font-size: 30 px;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;font-size: 16px; font-style:italic'>Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 " Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.</p>", unsafe_allow_html=True)
-st.markdown(""" <style>.stTextInput[aria-label="Describe your symptoms, health concerns, or requests:"] { 
-color: #4d9abf }</style> """, unsafe_allow_html=True) 
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
@@ -63,12 +61,12 @@ pharmDict = {
 }
 
 if "chatHistory" not in st.session_state:
-    st.session_state.chatHistory = [] #empty chat history with Pharmassistant (filled later)
+    st.session_state.chatHistory = []
 
 if "ynRespond" not in st.session_state:
         st.session_state.ynRespond = False #if Pharmassistant waits for yes or no 
 
-def respond(chat): #PharmAssistant response format
+def respond(chat):
     chat = chat.lower() 
 
     for sympt, meds in medDict.items(): 
@@ -77,18 +75,18 @@ def respond(chat): #PharmAssistant response format
                 return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(meds) + "\n\n" + msg, True
     return errorMsg, False
 
-def yesno(chat): #if Pharmassist gets yes or no response
+def yesno(chat):
     chat = chat.lower().strip()
     for yn, tf in ynDict.items(): 
-        for response in yn: #if main yes/no is in ynDict
-            if response in chat: #if user input has main yes/no response
-                return tf #return true/false
+        for response in yn:
+            if response in chat:
+                return tf 
     return None
 
 if "pharmacyFind" not in st.session_state:
     st.session_state.pharmFind = False
 
-def checkPharm(chat): #if pharmassistant gets pharmacy find req
+def checkPharm(chat):
     chat = chat.lower().strip()
     for pharmacy, tf in pharmDict.items():
         for response in pharmacy:
@@ -96,18 +94,18 @@ def checkPharm(chat): #if pharmassistant gets pharmacy find req
                 return tf
     return None
 
-if st.button("Send") and chat.strip() != "": #user sends message to pharmassistant
+if st.button("Send") and chat.strip() != "":
     st.session_state.chatHistory.append(chat)
     if st.session_state.ynRespond:
         yn = yesno(chat)
-        if yn is True: #if user says yes or asks for pharmacies
+        if yn is True:
             st.session_state.chatHistory.append("What village are you located in? \n\n Here are some nearby pharmacies:")
             st.session_state.chatHistory.append(
                 """ 
                 <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31037.348342169684!2d144.79071477180486!3d13.494510482085245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1spharmacy%20near%20me!5e0!3m2!1sen!2s" width="600" height="700" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> </iframe> 
                 """
             )
-        elif yn is False: #no
+        elif yn is False:
             st.session_state.chatHistory.append("Okay, just be sure to always consult your pharmacist or check the product label for appropriate dosages!")
         st.session_state.ynRespond = False
         
@@ -129,7 +127,7 @@ if st.button("Send") and chat.strip() != "": #user sends message to pharmassista
 
     st.rerun()
 
-with chatContainer: #saving chat history and displaying it
+with chatContainer:
     for chatEntry in st.session_state.chatHistory:        
         if "<iframe" in chatEntry:
             st.components.v1.html(chatEntry.replace("\n", ""), height=700)
@@ -137,6 +135,7 @@ with chatContainer: #saving chat history and displaying it
             st.markdown("<div style='background-color: #536e70; color: #d4f1ff; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; max-width: 70%; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: #152e33; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px; max-width: 70%'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
 
 
 
