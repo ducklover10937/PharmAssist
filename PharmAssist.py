@@ -99,15 +99,8 @@ def checkPharm(chat):
                 return tf
     return None
 
-if "msgSent" not in st.session_state:
-    st.session_state.msgSent = False
-
-
 def sendFunc():
     chat = st.session_state.chatInput.strip()
-
-    if st.session_state.msgSent =="":
-        return 
 
     if chat == "":
         return 
@@ -144,7 +137,7 @@ def sendFunc():
 
     st.session_state.chatInput = ""
     
-chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput", on_change=sendFunc) 
+chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput") 
 
 
 if st.button("Send"):
