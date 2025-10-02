@@ -8,11 +8,12 @@ st.set_page_config(
 )
 
 st.markdown("""<style>.stApp { background-color: #93b0b5; color: #152e33; } </style>""", unsafe_allow_html=True)
-st.markdown("""<style>.stButton { color: #4d9abf; }</style>""", unsafe_allow_html=True)
+st.markdown("""<style>.stButton { background-color: #152e33; color: #d3e9ed; }</style>""", unsafe_allow_html=True)
 st.markdown("<h1 style = 'text-align: center;font-size: 40px;'>PharmAssistant</h1>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;font-size: 20px;'>Your Over-the-Counter (OTC) medication recommender</p>", unsafe_allow_html=True)
 st.markdown("<p style = 'text-align: center;font-size: 14px; font-style:italic'>Please note that PharmAssistant is not a substitute for professional medical advice. Always confirm with your pharmacist before purchasing an OTC medication!" \
 " Be sure to consult a healthcare provider if you are experiencing serious symptoms, are pregnant, or taking other medications.</p>", unsafe_allow_html=True)
+st.markdown("<label style='color:#152e33; '>Describe your symptoms, health concerns, or requests:</label>", unsafe_allow_html=True)
 
 msg = "Remember to always consult your pharmacist or check the product label for appropriate dosages! \n\n Would you like me to find a nearby pharmacy for you?"
 errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting a healthcare professional for more accurate advice."
@@ -149,3 +150,4 @@ with chatContainer:
             st.markdown("<div style='background-color: #536e70; color: #d4f1ff; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; max-width: 70%; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: #152e33; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px; max-width: 70%'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
