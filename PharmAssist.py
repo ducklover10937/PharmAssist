@@ -103,6 +103,7 @@ def checkPharm(chat):
 
 if st.button("Send") and chat.strip() != "":
     st.session_state.chatHistory.append(chat)
+    st.session_state.chatInput = ""
     if st.session_state.ynRespond:
         yn = yesno(chat)
         if yn is True:
