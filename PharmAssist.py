@@ -140,7 +140,7 @@ def sendFunc():
 
     st.session_state.clear = True
     
-chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput") 
+chat = st.text_input("Describe your symptoms, health concerns, or requests:", key="chatInput") 
 
 if st.button("Send"):
     sendFunc()
