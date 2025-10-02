@@ -101,7 +101,11 @@ def checkPharm(chat):
                 return tf
     return None
 
-if st.button("Send") and chat.strip() != "":
+def sendfunc():
+    chat = st.session_state.chatInput.strip()
+
+    if chat == "":
+        return 
     st.session_state.chatHistory.append(chat)
    
     if st.session_state.ynRespond:
@@ -133,7 +137,9 @@ if st.button("Send") and chat.strip() != "":
             st.session_state.chatHistory.append("Recommendation:")
             st.session_state.chatHistory.append(recMatch)
     
-    st.rerun()
+if st.button("Send"):
+    sendfunc()
+    st.session_state.chatInput = ""
 
 with chatContainer:
     for chatEntry in st.session_state.chatHistory:        
