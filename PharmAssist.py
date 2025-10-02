@@ -77,7 +77,7 @@ def respond(chat):
     
     if medRec:
         medList = list(dict.fromkeys(medRec))
-        return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(medList) + "\n\n" + msg, True
+        return "Here are some popular OTC medications you can consider for your symptoms: \n\n    • " + " \n\n    • ".join(medList) + "\n\n" + msg, False
     return errorMsg, False
 
 def yesno(chat):
@@ -149,6 +149,7 @@ with chatContainer:
             st.markdown("<div style='background-color: #536e70; color: #d4f1ff; text-align: left; overflow-wrap:break-word; display:inline-block; padding: 10px; max-width: 70%; border-radius: 20px;'>"+chatEntry+"</div>", unsafe_allow_html=True)
         else:
             st.markdown("<div style='background-color: #d8ebf2; color: #152e33; text-align: left; overflow-wrap:break-word; float: right;display:inline-block; padding: 10px; border-radius: 20px; max-width: 70%'>"+chatEntry+"</div>", unsafe_allow_html=True)
+
 
 
 
