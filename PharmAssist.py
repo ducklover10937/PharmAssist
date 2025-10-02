@@ -19,8 +19,6 @@ errorMsg = "I'm sorry, I couldn't understand your symptoms. Consider consulting 
 
 chatContainer = st.container()
     
-chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput") 
-
 medDict = {
     ("headache","migraine","headaches","head ache","head aches","head pain","head","head pains"): ["Tylenol (Acetaminophen)", "Advil (Acetaminophen/Ibuprofen)", "Motrin IB (Ibuprofen)", "Aleve (Naproxen Sodium)", "Aspirin (Acetylsalicylic Acid)"],
     ("cough","sore throat","coughing","coughs"): ["Advil (Ibuprofen)", "Tylenol (Acetaminophen)", "Cough drops (Honey/Mentol/Glycerin)", "Mucinex (Guaifenesin)"],
@@ -101,7 +99,7 @@ def checkPharm(chat):
                 return tf
     return None
 
-def sendfunc():
+def sendFunc():
     chat = st.session_state.chatInput.strip()
 
     if chat == "":
@@ -136,10 +134,14 @@ def sendfunc():
             st.session_state.ynRespond = recAsk
             st.session_state.chatHistory.append("Recommendation:")
             st.session_state.chatHistory.append(recMatch)
-    
-if st.button("Send"):
-    sendfunc()
+
     st.session_state.chatInput = ""
+    
+chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput", on_change=sendFunc) 
+
+
+if st.button("Send"):
+    sendFunc()
 
 with chatContainer:
     for chatEntry in st.session_state.chatHistory:        
