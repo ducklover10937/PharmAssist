@@ -99,6 +99,9 @@ def checkPharm(chat):
                 return tf
     return None
 
+if "clear" not in st.session_state:
+    st.session_state.clear = False
+
 def sendFunc():
     chat = st.session_state.chatInput.strip()
 
@@ -135,13 +138,14 @@ def sendFunc():
             st.session_state.chatHistory.append("Recommendation:")
             st.session_state.chatHistory.append(recMatch)
 
-    st.session_state.chatInput = ""
+    st.session_state.clear = True
     
 chat = st.text_input("Describe your symptoms, health concerns, or requests:", value="", key="chatInput") 
 
-
 if st.button("Send"):
     sendFunc()
+    st.session_state.chatInput = ""
+
 
 with chatContainer:
     for chatEntry in st.session_state.chatHistory:        
